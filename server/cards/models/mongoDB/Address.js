@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const addressSchema = mongoose.Schema({
     state: {
         type: String,
-        maxLength: 256,
         trim: true,
+        minLength: 2,
     },
     country: {
         type: String,

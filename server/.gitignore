@@ -1,6 +1,0 @@
-node_modules/
-.DS_Store
-config/production.json
-config/development2.json
-server/config/production.json
-server/config/development2.json
