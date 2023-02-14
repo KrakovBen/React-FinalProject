@@ -23,6 +23,9 @@ const LeftNavBar = () => {
         {user && user.isAdmin && (
           <NavItem to={ROUTES.SANDBOX} label="Sandbox" />
         )}
+        {user && user.isAdmin && (
+          <NavItem to={ROUTES.CRM} label="CRM" />
+        )}
       </Box>
     </Box>
   );

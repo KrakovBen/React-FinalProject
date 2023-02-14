@@ -4,7 +4,7 @@ const addressSchema = mongoose.Schema({
     state: {
         type: String,
         trim: true,
-        minLength: 2,
+        maxLength: 256,
     },
     country: {
         type: String,
