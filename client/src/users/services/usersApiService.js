@@ -37,3 +37,12 @@ export const getUser = async (user_id) => {
     return Promise.reject(error.message);
   }
 }
+
+export const getAllUsers = async () => {
+  try {
+    const { data } = await axios.get(`${apiUrl}/users/`);
+    return data;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+}
