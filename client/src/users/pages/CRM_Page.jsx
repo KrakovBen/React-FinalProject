@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import PageHeader from '../../components/PageHeader'
 import { Container, Table, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
@@ -11,7 +11,12 @@ import UserList from '../components/UserList'
 
 const CRM_Page = ({}) => {
     const { user } = useUser()
-    const { handleGetAllUsers } = useUsers()
+    const { handleGetAllUsers, value } = useUsers()
+    const { users } = value
+
+    useEffect(()=>{
+        handleGetAllUsers();
+    }, [])
 
     if (!user?.isAdmin) return <Navigate replace to={ROUTES.CARDS} /> // NEED TO CHECK IF WORK PROPERLY
 
@@ -29,7 +34,7 @@ const CRM_Page = ({}) => {
                         <TableCell align="right">Delete</TableCell>
                     </TableRow>
                 </TableHead>
-                <UserList users/> {/* NEED TO FINISH */}
+                <UserList users={users}/> {/* NEED TO FINISH */}
             </TableContainer>
         </Container>
     )

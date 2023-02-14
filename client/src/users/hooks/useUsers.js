@@ -96,7 +96,6 @@ const useUsers = () => {
         setLoading(true);
         const users = await getAllUsers()
         requestStatus(false, null, users);
-        return user
       } catch (error) {
         requestStatus(false, error, null);
       }

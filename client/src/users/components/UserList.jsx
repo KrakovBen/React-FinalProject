@@ -1,9 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { IconButton, TableBody, TableCell, TableRow } from '@mui/material'
-import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
+import PersonRemoveIcon from '@mui/icons-material/PersonRemove'
 
 const UserList = ({ users, onDelete, onBusiness }) => {
+    console.log(users);
     return (
         <TableBody>
             {users.map((row) => (
@@ -12,6 +14,10 @@ const UserList = ({ users, onDelete, onBusiness }) => {
                     <TableCell align="right">
                         <IconButton aria-label="admin">
                             <AdminPanelSettingsIcon/>
+                        </IconButton>
+
+                        <IconButton aria-label="delete">
+                            <PersonRemoveIcon/>
                         </IconButton>
                     </TableCell>
                 </TableRow>
