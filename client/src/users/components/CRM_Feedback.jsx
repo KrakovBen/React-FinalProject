@@ -22,10 +22,10 @@ const CRM_Feedback = ({ isLoading, error, users }) => {
         <Table sx={{ minWidth: 250 }} aria-label="simple table">
             <TableHead>
                 <TableRow>
-                    <TableCell>User Email</TableCell>
-                    <TableCell align="right">Status</TableCell>
-                    <TableCell align="right">Business</TableCell>
-                    <TableCell align="right">Delete</TableCell>
+                    <TableCell align="center">User Email</TableCell>
+                    <TableCell align="center">Status</TableCell>
+                    <TableCell align="center">Business</TableCell>
+                    <TableCell align="center">Delete</TableCell>
                 </TableRow>
             </TableHead>
             <UserList users={users}/>
