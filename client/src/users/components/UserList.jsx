@@ -11,11 +11,14 @@ const UserList = ({ users, onDelete, onBusiness }) => {
             {users.map((row) => (
                 <TableRow key={row._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                     <TableCell component="th" scope="row">{row.email}</TableCell>
+                    <TableCell align="right">STATUS</TableCell>
                     <TableCell align="right">
                         <IconButton aria-label="admin">
                             <AdminPanelSettingsIcon/>
                         </IconButton>
+                    </TableCell>
 
+                    <TableCell align="right">
                         <IconButton aria-label="delete">
                             <PersonRemoveIcon/>
                         </IconButton>
