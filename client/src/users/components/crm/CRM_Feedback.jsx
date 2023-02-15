@@ -1,13 +1,13 @@
 import React from 'react'
 import { Table, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import Paper from '@mui/material/Paper'
-import UserList from '../components/UserList'
-import PropTypes, { arrayOf, bool, string } from 'prop-types'
-import Error from '../../components/Error'
-import Spinner from '../../components/Spinner'
-import userListType from '../models/types/userListType'
+import UserList from './UserList'
+import PropTypes, { arrayOf, bool, func, string } from 'prop-types'
+import Error from '../../../components/Error'
+import Spinner from '../../../components/Spinner'
+import userListType from '../../models/types/userListType'
 
-const CRM_Feedback = ({ isLoading, error, users }) => {
+const CRM_Feedback = ({ isLoading, error, users, onDelete, onBusiness }) => {
     if (isLoading) return <Spinner />
     if (error) return <Error errorMessage={error} />
 
@@ -23,12 +23,11 @@ const CRM_Feedback = ({ isLoading, error, users }) => {
             <TableHead>
                 <TableRow>
                     <TableCell align="center">User Email</TableCell>
-                    <TableCell align="center">Status</TableCell>
                     <TableCell align="center">Business</TableCell>
                     <TableCell align="center">Delete</TableCell>
                 </TableRow>
             </TableHead>
-            <UserList users={users}/>
+            <UserList users={users} onDelete={onDelete} onBusiness={onBusiness}/>
         </Table>
     </TableContainer>
     )
@@ -37,7 +36,8 @@ const CRM_Feedback = ({ isLoading, error, users }) => {
 CRM_Feedback.propTypes = {
     isLoading: bool.isRequired,
     error: string,
-    users: arrayOf(userListType)
+    users: arrayOf(userListType),
+    onDelete: func.isRequired
 }
 
 export default CRM_Feedback

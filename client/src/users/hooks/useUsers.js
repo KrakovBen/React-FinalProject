@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
 import useAxios from "../../hooks/useAxios";
-import { login, signup, edit, getUser as getUserFromDB, getAllUsers, deleteUser } from "../services/usersApiService";
+import { login, signup, edit, getUser as getUserFromDB, getAllUsers, deleteUser, businessUser } from "../services/usersApiService";
 import {
   getUser,
   removeToken,
@@ -83,9 +83,9 @@ const useUsers = () => {
     async (user_id) => {
       try {
         setLoading(true);
-        const user = await getUserFromDB(user_id)
-        requestStatus(false, null, null, user);
-        return user
+        const userFormDB = await getUserFromDB(user_id)
+        requestStatus(false, null, userFormDB, user);
+        return userFormDB
       } catch (error) {
         requestStatus(false, error, null);
       }
@@ -96,8 +96,8 @@ const useUsers = () => {
     async (user_id) => {
       try {
         setLoading(true);
-        const users = await getAllUsers()
-        requestStatus(false, null, users, user);
+        const usersFormDB = await getAllUsers()
+        requestStatus(false, null, usersFormDB, user);
       } catch (error) {
         requestStatus(false, error, null);
       }
@@ -116,6 +116,18 @@ const useUsers = () => {
     }, [requestStatus]
   )
 
+  const handleBusinessUser = useCallback(
+    async (user_id) => {
+      try {
+        await businessUser(user_id)
+        snack("success", "The user has been successfully changed")
+        requestStatus(false, null, users, user)
+      } catch (error) {
+        requestStatus(false, error, null);
+      }
+    }, [requestStatus, users]
+  )
+
   const value = useMemo(
     () => ({ isLoading, error, user, users }),
     [isLoading, error, user, users]
@@ -128,7 +140,9 @@ const useUsers = () => {
     handleSignup,
     handleEdit,
     handleGetUser,
-    handleGetAllUsers
+    handleGetAllUsers,
+    handleDeleteUser,
+    handleBusinessUser
   };
 };
 

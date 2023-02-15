@@ -36,6 +36,7 @@ import EditCardPage from "../cards/pages/EditCardPage";
 import FavCardsPage from "../cards/pages/FavCardPage";
 import EditUserPage from "../users/pages/EditUserPage";
 import CRM_Page from "../users/pages/CRM_Page";
+import UserPage from "../users/pages/UserPage";
 
 const Router = () => {
   return (
@@ -55,6 +56,7 @@ const Router = () => {
       <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
       <Route path={`${ROUTES.EDIT_USER}/:user_id`} element={<EditUserPage />} />
       <Route path={ROUTES.CRM} element={<CRM_Page />} />
+      <Route path={`${ROUTES.USER_PROFILE}/:user_id`} element={<UserPage />} />
       <Route path={ROUTES.SANDBOX} element={<Sandbox />}>
         <Route path="logic" element={<CompLogic />} />
         <Route path="use-ref" element={<UseRefSandbox />}>

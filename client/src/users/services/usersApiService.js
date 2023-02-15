@@ -55,3 +55,12 @@ export const deleteUser = async (userId) => {
     return Promise.reject(error.message);
   }
 }
+
+export const businessUser = async (userId) => {
+  try {
+    const { data } = await axios.patch(`${apiUrl}/users/${userId}`);
+    return data;
+  } catch (error) {
+    return Promise.reject(error.message);
+  }
+}
