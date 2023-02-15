@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
 import useAxios from "../../hooks/useAxios";
-import { login, signup, edit, getUser as getUserFromDB, getAllUsers } from "../services/usersApiService";
+import { login, signup, edit, getUser as getUserFromDB, getAllUsers, deleteUser } from "../services/usersApiService";
 import {
   getUser,
   removeToken,
@@ -10,11 +10,13 @@ import { useUser } from "../providers/UserProvider";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import normalizeUser from "../helpers/normalization/normalizeUser";
+import { useSnackbar } from "../../providers/SnackbarProvider";
 
 const useUsers = () => {
   const [users, setUsers] = useState(null);
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const snack = useSnackbar();
 
   const navigate = useNavigate();
   const { user, setUser, setToken } = useUser();
@@ -96,6 +98,18 @@ const useUsers = () => {
         setLoading(true);
         const users = await getAllUsers()
         requestStatus(false, null, users, user);
+      } catch (error) {
+        requestStatus(false, error, null);
+      }
+    }, [requestStatus]
+  )
+
+  const handleDeleteUser = useCallback(
+    async (user_id) => {
+      try {
+        setLoading(true);
+        await deleteUser(user_id)
+        snack("success", "The user has been successfully deleted")
       } catch (error) {
         requestStatus(false, error, null);
       }

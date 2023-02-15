@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import ROUTES from "../../../routes/routesModel";
 import useCards from "../../hooks/useCards";
 
-const CardActionBar = ({ cardId, onDelete, onLike, cardUserId, cardLikes }) => {
+const CardActionBar = ({ cardId, onDelete, onLike, cardUserId, cardLikes, phone }) => {
   const [isDialogOpen, setDialog] = useState(false);
   const { user } = useUser();
   const navigate = useNavigate();
@@ -63,7 +63,7 @@ const CardActionBar = ({ cardId, onDelete, onLike, cardUserId, cardLikes }) => {
         </Box>
 
         <Box>
-          <IconButton aria-label="call business">
+          <IconButton aria-label="call business" href={`tel:${phone}`}>
             <CallIcon />
           </IconButton>
 

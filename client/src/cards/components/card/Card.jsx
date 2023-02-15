@@ -26,6 +26,7 @@ const Card = ({ card, onDelete, onLike }) => {
         onLike={onLike}
         cardUserId={card.user_id}
         cardLikes={card.likes}
+        phone={card.phone}
       />
     </MuiCard>
   );
