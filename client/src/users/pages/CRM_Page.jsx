@@ -7,7 +7,7 @@ import ROUTES from '../../routes/routesModel'
 import { Navigate } from 'react-router-dom'
 import CRM_Feedback from '../components/CRM_Feedback'
 
-const CRM_Page = ({}) => {
+const CRM_Page = () => {
     const { user } = useUser()
     const { handleGetAllUsers, value } = useUsers()
     const { users, isLoading, error } = value
@@ -26,7 +26,5 @@ const CRM_Page = ({}) => {
         </Container>
     )
 }
-
-// CRM_Page.propTypes = {}
 
 export default CRM_Page

@@ -2,9 +2,10 @@ import React from 'react'
 import { Table, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
 import Paper from '@mui/material/Paper'
 import UserList from '../components/UserList'
-import PropTypes from 'prop-types'
+import PropTypes, { arrayOf, bool, string } from 'prop-types'
 import Error from '../../components/Error'
 import Spinner from '../../components/Spinner'
+import userListType from '../models/types/userListType'
 
 const CRM_Feedback = ({ isLoading, error, users }) => {
     if (isLoading) return <Spinner />
@@ -18,12 +19,12 @@ const CRM_Feedback = ({ isLoading, error, users }) => {
 
     if (users && !!users.length) return (
         <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 250 }} aria-label="simple table">
             <TableHead>
                 <TableRow>
                     <TableCell>User Email</TableCell>
-                    <TableCell align="right">Active</TableCell>
-                    <TableCell align="right">Admin</TableCell>
+                    <TableCell align="right">Status</TableCell>
+                    <TableCell align="right">Business</TableCell>
                     <TableCell align="right">Delete</TableCell>
                 </TableRow>
             </TableHead>
@@ -33,6 +34,10 @@ const CRM_Feedback = ({ isLoading, error, users }) => {
     )
 }
 
-// CRM_Feedback.propTypes = {}
+CRM_Feedback.propTypes = {
+    isLoading: bool.isRequired,
+    error: string,
+    users: arrayOf(userListType)
+}
 
 export default CRM_Feedback
